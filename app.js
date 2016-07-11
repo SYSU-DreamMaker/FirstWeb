@@ -35,7 +35,7 @@ module.exports = function() {
 
   app.get('/:name', routes.other);
   app.get('/', routes.index);
-  
+
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -69,3 +69,4 @@ module.exports = function() {
 
   return app;
 }
+
