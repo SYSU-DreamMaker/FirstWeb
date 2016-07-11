@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
+var ejs = require('ejs');
 
 module.exports = function() {
   var routes = require('./routes/index');
@@ -13,7 +14,8 @@ module.exports = function() {
 
   // view engine setup
   app.set('views', path.join(__dirname, 'views'));
-  app.set('view engine', 'jade');
+  app.engine('.html', ejs.__express);
+  app.set('view engine', 'html');
 
   // uncomment after placing your favicon in /public
   //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
