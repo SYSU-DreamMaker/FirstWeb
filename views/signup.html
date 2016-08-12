@@ -1,0 +1,631 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Dreammaker_signup</title>
+  <script type="text/javascript" src='js/lib/jquery.js'></script>
+<style>
+
+body {
+margin:0px;
+padding:0px;
+}
+
+canvas {
+  opacity: 0.9;
+}
+
+/*Buttons Style */
+.codrops-demos {
+  font-size: 0.8em;
+  text-align:center;
+  position:absolute;
+  z-index:99;
+  width:96%;
+}
+
+.codrops-demos a {
+  display: inline-block;
+  margin: 0.35em 0.1em;
+  padding: 0.5em 1.2em;
+  outline: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  border-radius: 2px;
+  font-size: 110%;
+  border: 2px solid transparent;
+  color:#fff;
+}
+
+.codrops-demos a:hover,
+.codrops-demos a.current-demo {
+  border-color: #383a3c;
+}
+
+#reg {
+  width:640px;
+  height:350px;
+  border:0px solid #ccc;
+  margin-top:10%;
+  margin-left:30%;
+  z-index:9999;
+}
+#reg h2 {
+  height:10px;
+  line-height:40px;
+  text-align:center;
+  font-size:26px;
+  letter-spacing:3px;
+  color:#283;
+  margin:0;
+  padding:0;
+  cursor:move;
+}
+#reg h2 img {
+  float:right;
+  position:relative;
+  top:14px;
+  right:8px;
+  cursor:pointer;
+}
+#reg dl {
+  font-size:18px;
+  color:#080;
+  margin:50px 110px 0 0;
+  position:relative;
+}
+#reg dl dd {
+  height:40px;
+  padding:8px 0;
+}
+#reg dl dd input.text, #reg dl dd select {
+  width:240px;
+  height:34px;
+  background:#444;
+  font-size:22px;
+  color:#fff;
+  border-radius: 5%;
+  border:1px;
+}
+#reg dl dd select {
+  width:202px;
+}
+
+#reg dl dd.ps strong.num {
+  padding:0 2px;
+}
+#reg dl dd.ps span.clear {
+  color:#06f;
+  cursor:pointer;
+}
+#reg dl dd input.submit {
+  width:143px;
+  height:33px;
+  background:url(img/reg.png) no-repeat;
+  border:0px;
+  border-radius: 8%;
+  cursor:pointer;
+  margin-top:10px;
+}
+#reg dl dd span.info, #reg dl dd span.error, #reg dl dd span.succ {
+  display:block;
+  font-size:12px;
+  color:#33;
+  width:165px;
+  height:32px;
+  line-height:32px;
+  padding:0 0 0 35px;
+  position:absolute;
+  letter-spacing:1px;
+  display:none;
+}
+#reg dl dd span.info {
+  margin-left:-40px;
+  text-align: left;
+  color:red;
+}
+#reg dl dd span.error {
+  margin-left:-42px;
+  color:blue;
+}
+#reg dl dd span.succ {
+  height:14px;
+  line-height:14px;
+  margin-left:-110px;
+  color:green;
+}
+#reg dl dd span.info_user {
+  height:43px;
+  line-height:18px;
+  padding-top:3px;
+  top:3px;
+  left:495px;
+}
+#reg dl dd span.error_user {
+  top:8px;
+  left:495px;
+}
+#reg dl dd span.succ_user {
+  top:16px;
+  left:495px;
+}
+#reg dl dd span.info_pass {
+  width:244px;
+  height:102px;
+  padding:4px 0 0 16px;
+  top:36px;
+  left:512px;
+  letter-spacing:0;
+}
+#reg dl dd span.info_pass p {
+  height:5px;
+  line-height:35px;
+}
+#reg dl dd span.info_pass p strong.s {
+  color:#ccc;
+}
+#reg dl dd span.error_pass {
+  top:63px;
+  left:495px;
+}
+#reg dl dd span.succ_pass {
+  top:72px;
+  left:495px;
+}
+#reg dl dd span.info_notpass {
+  top:123px;
+  left:495px;
+}
+#reg dl dd span.error_notpass {
+  top:123px;
+  left:495px;
+}
+#reg dl dd span.succ_notpass {
+  top:130px;
+  left:495px;
+}
+#reg dl dd span.info_email {
+  left:495px;
+  top:178px;
+}
+#reg dl dd span.error_email {
+  top:176px;
+  left:495px;
+}
+#reg dl dd span.succ_email {
+  top:186px;
+  left:495px;
+}
+#reg dl dd ul.all_email {
+  width:180px;
+  height:130px;
+  background:#fff;
+  padding:5px 10px;
+  position:absolute;
+  top:215px;
+  left:213px;
+  border:1px solid #ccc;
+  display:none;
+}
+#reg dl dd ul.all_email li {
+  height:25px;
+  line-height:25px;
+  border-bottom:1px solid #e5edf2;
+  padding:0 5px;
+  cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="codrops-demos">
+    <div id = "reg">
+            <h2><img src="" alt="" class="close" />注册(Register)</h2>
+            <form id="form_reg">
+            <dl>
+              <dd>用户名称： <input type="text" id="user" class="text" />
+                <span class="info info_user">请输入用户名，2~20位，由字母、数字和下划线组成！</span>
+                <span class="error error_user">输入不合法，请重新输入！</span>
+                <span class="succ succ_user">可用</span>
+              </dd>
+              <dd>密　　码： <input type="password" id="pass" class="text" />
+                <span class="info info_pass">
+                  <p>安全级别：<strong class="s s1">■</strong><strong class="s s2">■</strong><strong class="s s3">■</strong> <strong class="s s4" style="font-weight:normal;"></strong></p>
+                  <p><strong class="q1" style="font-weight:normal;">○</strong> 6-20 个字符</p>
+                  <p><strong class="q2" style="font-weight:normal;">○</strong> 只能包含大小写字母、数字和非空格字符</p>
+                  <p><strong class="q3" style="font-weight:normal;">○</strong> 大、小写字母、数字、非空字符，2种以上</p>
+                </span>
+                <span class="error error_pass">输入不合法，请重新输入！</span>
+                <span class="succ succ_pass">可用</span>
+              </dd>
+              <dd>密码确认： <input type="password" id="notpass" class="text" />
+                <span class="info info_notpass">请再一次输入密码！</span>
+                <span class="error error_notpass">密码不一致，请重新输入！</span>
+                <span class="succ succ_notpass">可用</span>
+              </dd>
+              <dd>电子邮件： <input type="text" id="email" class="text" autocomplete="off" />
+                <span class="info info_email">请输入电子邮件！</span>
+                <span class="error error_email">邮件不合法，请重新输入！</span>
+                <span class="succ succ_email">可用</span>
+                <ul class="all_email">
+                  <li><span></span>@qq.com</li>
+                  <li><span></span>@163.com</li>
+                  <li><span></span>@sohu.com</li>
+                  <li><span></span>@sina.com.cn</li>
+                  <li><span></span>@gmail.com</li>
+                </ul>
+              </dd>
+              <dd style="padding:0 0 0 80px;"><input type="button" class="submit" /></dd>
+            </dl>
+            </form>
+
+          </div>
+</nav>
+
+<canvas id="canvas"></canvas>
+<script>
+  "use strict";
+
+  var canvas = document.getElementById('canvas'),
+  ctx = canvas.getContext('2d'),
+  w = canvas.width = window.innerWidth,
+  h = canvas.height = window.innerHeight,
+
+  hue = 257,
+  stars = [],
+  count = 0,
+  maxStars = 1200;
+
+  var canvas2 = document.createElement('canvas'),
+  ctx2 = canvas2.getContext('2d');
+  canvas2.width = 100;
+  canvas2.height = 100;
+  var half = canvas2.width / 2,
+  gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
+  gradient2.addColorStop(0.025, '#fff');
+  gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
+  gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
+  gradient2.addColorStop(1, 'transparent');
+
+  ctx2.fillStyle = gradient2;
+  ctx2.beginPath();
+  ctx2.arc(half, half, half, 0, Math.PI * 2);
+  ctx2.fill();
+
+  // End cache
+
+  function random(min, max) {
+    if (arguments.length < 2) {
+      max = min;
+      min = 0;
+    }
+
+    if (min > max) {
+      var hold = max;
+      max = min;
+      min = hold;
+    }
+
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function maxOrbit(x, y) {
+    var max = Math.max(x, y),
+      diameter = Math.round(Math.sqrt(max * max + max * max));
+    return diameter / 2;
+  }
+
+  var Star = function() {
+
+    this.orbitRadius = random(maxOrbit(w, h));
+    this.radius = random(60, this.orbitRadius) / 12;
+    this.orbitX = w / 2;
+    this.orbitY = h / 2;
+    this.timePassed = random(0, maxStars);
+    this.speed = random(this.orbitRadius) / 900000;
+    this.alpha = random(2, 10) / 10;
+
+    count++;
+    stars[count] = this;
+  }
+
+  Star.prototype.draw = function() {
+    var x = Math.sin(this.timePassed) * this.orbitRadius + this.orbitX,
+      y = Math.cos(this.timePassed) * this.orbitRadius + this.orbitY,
+      twinkle = random(10);
+
+    if (twinkle === 1 && this.alpha > 0) {
+      this.alpha -= 0.05;
+    } else if (twinkle === 2 && this.alpha < 1) {
+      this.alpha += 0.05;
+    }
+
+    ctx.globalAlpha = this.alpha;
+    ctx.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
+    this.timePassed += this.speed;
+  }
+
+  for (var i = 0; i < maxStars; i++) {
+    new Star();
+  }
+
+  function animation() {
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.globalAlpha = 0.8;
+    ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 1)';
+    ctx.fillRect(0, 0, w, h)
+
+    ctx.globalCompositeOperation = 'lighter';
+    for (var i = 1, l = stars.length; i < l; i++) {
+      stars[i].draw();
+    };
+
+    window.requestAnimationFrame(animation);
+  }
+
+  animation();
+
+//form verification
+//
+//reset the form
+  var user_succ = 0, pass_succ = 0, not_pass_succ = 0, email_succ = 0;
+  $('#form_reg')[0].reset();
+
+  $('#user').bind('focus', function () {
+    $('#reg .info_user').css('display', 'block');
+    $('#reg .error_user').css('display', 'none');
+    $('#reg .succ_user').css('display', 'none');
+  }).bind('blur', function () {
+    if ($.trim($(this).val()) == '') {
+      $('#reg .info_user').css('display', 'none');
+      $('#reg .error_user').css('display', 'none');
+      $('#reg .succ_user').css('display', 'none');
+    } else if (!/[\w]{2,20}/.test($.trim($(this).val()))) {
+      $('#reg .error_user').css('display', 'block');
+      $('#reg .info_user').css('display', 'none');
+      $('#reg .succ_user').css('display', 'none');
+    } else {
+      $('#reg .succ_user').css('display', 'block');
+      $('#reg .error_user').css('display', 'none');
+      $('#reg .info_user').css('display', 'none');
+      user_succ = 1;
+    }
+  });
+
+  //Password verification
+  $('#pass').bind('focus', function () {
+    $('#reg .info_pass').css('display', 'block');
+    $('#reg .error_pass').css('display', 'none');
+    $('#reg .succ_pass').css('display', 'none');
+  }).bind('blur', function () {
+    if ($.trim($(this).val()) == '') {
+      $('#reg .info_pass').css('display', 'none');
+    } else {
+      if (check_pass(this)) {
+        $('#reg .info_pass').css('display', 'none');
+        $('#reg .error_pass').css('display', 'none');
+        $('#reg .succ_pass').css('display', 'block');
+        pass_succ = 1;
+      } else {
+        $('#reg .info_pass').css('display', 'none');
+        $('#reg .error_pass').css('display', 'block');
+        $('#reg .succ_pass').css('display', 'none');
+      }
+    }
+  });
+
+  //Password strength verification
+  $('#pass').bind('keyup', function () {
+    check_pass(this);
+  });
+
+  //Password authentication
+  function check_pass(_this) {
+    var value = $.trim($(_this).val());
+    var value_length = value.length;
+    var code_length = 0;
+    var flag = false;
+
+    //The first condition is :the authentication must between 6-20 bits.
+    if (value_length >= 6 && value_length <= 20) {
+      $('#reg .info_pass .q1').html('●').css('color', 'green');
+    } else {
+      $('#reg .info_pass .q1').html('○').css('color', '#666');
+    }
+
+    //Second condition is : letter or number or non null character, any one can
+    if (value_length > 0 && !/\s/.test(value)) {
+      $('#reg .info_pass .q2').html('●').css('color', 'green');
+    } else {
+      $('#reg .info_pass .q2').html('○').css('color', '#666');
+    }
+
+    //Third  condition is :capital letters, lowercase letters, numbers, non null characters can be any two kinds of mixed
+    if (/[\d]/.test(value)) {
+      code_length++;
+    }
+
+    if (/[a-z]/.test(value)) {
+      code_length++;
+    }
+
+    if (/[A-Z]/.test(value)) {
+      code_length++;
+    }
+
+    if (/[^\w]/.test(value)) {
+      code_length++;
+    }
+
+    if (code_length >= 2) {
+      $('#reg .info_pass .q3').html('●').css('color', 'green');
+    } else {
+      $('#reg .info_pass .q3').html('○').css('color', '#666');
+    }
+
+    //Security level
+    if (value_length >= 10 && code_length >= 3) {
+      $('#reg .info_pass .s1').css('color', 'green');
+      $('#reg .info_pass .s2').css('color', 'green');
+      $('#reg .info_pass .s3').css('color', 'green');
+      $('#reg .info_pass .s4').html('高').css('color', 'green');
+    } else if (value_length >= 8 && code_length >= 2) {
+      $('#reg .info_pass .s1').css('color', '#f60');
+      $('#reg .info_pass .s2').css('color', '#f60');
+      $('#reg .info_pass .s3').css('color', '#ccc');
+      $('#reg .info_pass .s4').html('中').css('color', '#f60');
+    } else if (value_length >= 1) {
+      $('#reg .info_pass .s1').css('color', 'maroon');
+      $('#reg .info_pass .s2').css('color', '#ccc');
+      $('#reg .info_pass .s3').css('color', '#ccc');
+      $('#reg .info_pass .s4').html('低').css('color', 'maroon');
+    } else {
+      $('#reg .info_pass .s1').css('color', '#ccc');
+      $('#reg .info_pass .s2').css('color', '#ccc');
+      $('#reg .info_pass .s3').css('color', '#ccc');
+      $('#reg .info_pass .s4').html(' ');
+    }
+
+    if (value_length >= 6 && value_length <= 20 && !/\s/.test(value) && code_length >= 2) flag = true;
+
+    return flag;
+  }
+
+
+  //Password confirmation
+  $('#notpass').bind('focus', function () {
+    $('#reg .info_notpass').css('display', 'block');
+    $('#reg .error_notpass').css('display', 'none');
+    $('#reg .succ_notpass').css('display', 'none');
+  }).bind('blur', function () {
+    if ($.trim($(this).val()) == '') {
+      $('#reg .info_notpass').css('display', 'none');
+    } else if ($.trim($(this).val()) == $.trim($('#pass').val())){
+      $('#reg .info_notpass').css('display', 'none');
+      $('#reg .error_notpass').css('display', 'none');
+      $('#reg .succ_notpass').css('display', 'block');
+      not_pass_succ = 1;
+    } else {
+      $('#reg .info_notpass').css('display', 'none');
+      $('#reg .error_notpass').css('display', 'block');
+      $('#reg .succ_notpass').css('display', 'none');
+    }
+  });
+
+  //e-mail
+  $('#email').bind('focus', function () {
+
+    //Complete interface
+    if ($(this).val().indexOf('@') == -1) $('#reg .all_email').css('display', 'block');
+    $('#reg .info_email').css('display', 'block');
+    $('#reg .error_email').css('display', 'none');
+    $('#reg .succ_email').css('display', 'none');
+  }).bind('blur', function () {
+
+    //Complete interface
+    $('#reg .all_email').css('display', 'none');
+
+    if ($.trim($(this).val()) == '') {
+      $('#reg .info_email').css('display', 'none');
+    } else if (/^[\w\-\.]+@[\w\-]+(\.[a-zA-Z]{2,4}){1,2}$/.test($.trim($(this).val()))) {
+      $('#reg .info_email').css('display', 'none');
+      $('#reg .error_email').css('display', 'none');
+      $('#reg .succ_email').css('display', 'block');
+      email_succ = 1;
+    } else {
+      $('#reg .info_email').css('display', 'none');
+      $('#reg .error_email').css('display', 'block');
+      $('#reg .succ_email').css('display', 'none');
+    }
+  });
+
+
+  //Type the e-mail complete
+  $('#email').bind('keyup', function (event) {
+    if ($(this).val().indexOf('@') == -1) {
+      $('#reg .all_email').css('display', 'block');
+      $('#reg .all_email li span').html($(this).val());
+    } else {
+      $('#reg .all_email').css('display', 'none');
+    }
+
+    $('#reg .all_email li').css('background', 'none');
+    $('#reg .all_email li').css('color', '#666');
+
+    if (event.keyCode == 40) {
+      if (this.index == undefined || this.index >= $('#reg .all_email li').length() - 1) {
+        this.index = 0;
+      } else {
+        this.index++;
+      }
+      $('#reg .all_email li').eq(this.index).css('background', '#e5edf2');
+      $('#reg .all_email li').eq(this.index).css('color', '#369');
+    }
+
+    if (event.keyCode == 38) {
+      if (this.index == undefined || this.index <= 0) {
+        this.index = $('#reg .all_email li').length() - 1;
+      } else {
+        this.index--;
+      }
+      $('#reg .all_email li').eq(this.index).css('background', '#e5edf2');
+      $('#reg .all_email li').eq(this.index).css('color', '#369');
+    }
+
+    if (event.keyCode == 13) {
+      $(this).value($('#reg .all_email li').eq(this.index).text());
+      $('#reg .all_email').css('display', 'none');
+      this.index = undefined;
+    }
+
+  });
+
+  //Click and get email complete
+  $('#reg .all_email li').bind('mousedown', function () {
+    $('#email').val($(this).text());
+  });
+
+  //Complete the e-mail, the effect of the mouse moved out
+  $('#reg .all_email li').hover(function () {
+    $(this).css('background', '#e5edf2');
+    $(this).css('color', '#369');
+  }, function () {
+    $(this).css('background', 'none');
+    $(this).css('color', '#666');
+  });
+
+
+   $(".submit").click(function() {
+    if (user_succ&&pass_succ&&not_pass_succ&&email_succ) {
+      var user_info = {
+        'name': $('#user').val(),
+        'pass': $('form #pass').val(),
+        'email': $('form #email').val()
+      }
+
+      $.ajax({
+        type:"POST",
+        url:'/user_signup',
+        data:user_info,
+        success:function(data) {
+          if (data) {
+            //alert("注册成功,请登录");
+            window.location='login.html';
+          } else {
+            alert("注册失败");
+          }
+        }
+      });
+    } else {
+       alert("用户名或密码不合法，请重新注册");
+    }
+  });
+
+
+</script>
+</body>
+</html>

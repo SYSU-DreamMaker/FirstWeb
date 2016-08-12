@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dream Maker</title>
+	<!-- for-mobile-apps -->
+    <link rel = "Shortcut Icon" href="img/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="/stylesheets/index.css" type="text/css" rel="stylesheet" media="all and (max-width:1389px)" />
+	<style>
+		body
+		{
+		background:url(proimages/bg.gif) repeat #000;
+		padding:0; font-family:arial, sans-serif; font-size:12px;
+		margin:0px auto auto auto;
+		color:#36322b;
+		}
+		p{
+		padding:0px;
+		text-align:justify;
+		margin:0px;
+		line-height:20px;
+		}
+		p.welcome{
+		padding:30px 35px 0 35px;
+		}
+		p.testimonial{
+		font-style:italic;
+		padding:5px 15px 0 5px;
+		}
+		.clear{
+		clear:both;
+		}
+		a{
+		text-decoration:underline;
+		}
+		a.read_more{
+		display:block;
+		width:66px;
+		height:23px;
+		line-height:23px;
+		text-align:center;
+		color:#fff;
+		float:right;
+		margin:10px 40px 0 0;
+		padding:0 0 0 17px;
+		text-decoration:none;
+		font-size:12px;
+		background:url(proimages/read_more_bg.gif) no-repeat center;
+		}
+		a:hover.read_more{
+		text-decoration:underline;
+		}
+		img.left_img{
+		float:left;
+		padding:3px 25px 3px 3px;
+		}
+
+		#main_container{
+		width:821px;
+		height:auto;
+		margin:auto;
+		padding:0px;
+		}
+		#header{
+		width:821px;
+		height:135px;
+		margin:0px;
+		padding:0px;
+		background:url(proimages/header_bg.gif) no-repeat center top;
+		}
+		.logo{
+		padding:30px 0 0 0px;
+		}
+		.title{
+		width: auto;
+		padding:2px 0 10px 0;
+		font-size:17px;
+		color:#2e2721;
+		font-weight:bold;
+		}
+		.title_welcome{
+		width: auto;
+		padding:0 0 0 35px;
+		font-size:22px;
+		color:#24a4b3;
+		background:url(proimages/checked.gif) no-repeat left top;
+		margin:0 0 10px 25px;
+		}
+		span.red{
+		font-weight:bold;
+		color:#da5b23;
+		}
+		span.orange{
+		font-weight:bold;
+		color:#da5b23;
+		}
+
+		/*---------------- menu tab----------------------*/
+		.menu{
+		width:821px;
+		height:42px;
+		margin:0px;
+		background:url(proimages/menu_bg.gif) no-repeat left;
+		}
+		.menu ul{
+		list-style:none;
+		padding:0 0 0 15px;
+		margin:0px;
+		}
+		.menu ul li{
+		display:inline;
+		}
+		.menu ul li a{
+		float:left;
+		height:42px;
+		border:none;
+		padding:0 15px 0 15px;
+		text-decoration:none;
+		color:#fff;
+		line-height:42px;
+		font-size:14px;
+		}
+		.menu ul li.selected a{
+		float:left;
+		height:42px;
+		border:none;
+		padding:0 15px 0 15px;
+		text-decoration:none;
+		color:#fff;
+		line-height:42px;
+		font-size:14px;
+		background:url(proimages/menu_bullet.gif) no-repeat bottom center;
+		}
+		.menu ul li a:hover{
+		background:url(proimages/menu_bullet.gif) no-repeat bottom center;
+		}
+
+		/*-------------welcome_box------------*/
+		.welcome_box{
+		width:496px;
+		height:202px;
+		background:url(proimages/welcome_box.gif) no-repeat center;
+		padding:0px;
+		}
+		/*---------------center_content-------*/
+		.center_content{
+		width:821px;
+		height:auto;
+		clear:both;
+		padding:25px 0 30px 0;
+		background-color:#e9e5e2;
+		}
+		.center_left{
+		width:500px;
+		float:left;
+		padding:10px 0 10px 10px;
+		}
+		.center_right{
+		width:300px;
+		float:left;
+		padding:10px 0 10px 0px;
+		}
+		.software_box{
+		width:187px;
+		height:265px;
+		padding:0 0 15px 50px;
+		}
+		.features{
+		padding:10px 0 0 30px;
+		}
+		.news_box{
+		float:left;
+		width:auto;
+		border-bottom:1px #CCCCCC dashed;
+		padding:10px 0 8px 0;
+		}
+		.news_icon{
+		width:30px;
+		height:33px;
+		float:left;
+		background:url(proimages/news_icon.gif) no-repeat center;
+		}
+		.news_content{
+		width:400px;
+		float:left;
+		text-align:justify;
+		line-height:20px;
+		padding:0 0 0 10px;
+		}
+		/*-----------------------login_form-------------------*/
+		.text_box{
+		width:278px;
+		height:144px;
+		padding:15px 0 0 10px;
+		background:url(proimages/text_box.gif) no-repeat center;
+		background-position:0px 0px;
+		}
+		.login_form_row{
+		float:left;
+		padding:4px 0 4px 0;
+		}
+		label.login_label{
+		width:70px;
+		float:left;
+		padding:3px 5px 0 0;
+		color:#000;
+		text-align:right;
+		}
+		input.login_input{
+		width:153px;
+		height:18px;
+		float:left;
+		border:1px #9dbbc6 solid;
+		background-color:#fff;
+		color: #000;
+		}
+		input.login{
+		float:right;
+		padding:10px 20px 0 0;
+		}
+		/*----------------------list-------------------------*/
+		ul.list{
+		list-style:none;padding:0px;margin:0px;
+		}
+		ul.list li{
+		list-style:none;width: auto;height: auto;padding:0px; margin:8px 0 8px 0;
+		}
+		ul.list li a{
+		height:24px; width: auto; padding:0 0 0 15px; margin:0;color:#36322b;text-align:left;line-height:24px;
+		text-decoration:none;
+		}
+		ul.list li span{
+		height:24px; width:24px; display:block;padding:0px; margin:0px;color:#000;text-align:center; float:left; float:left; line-height:24px;
+		background:url(proimages/bullet_list.gif) no-repeat left;
+		}
+		ul.list li a:hover{
+		text-decoration:underline;
+		}
+		.testimonials{
+		padding:20px 0 20px 0;
+		}
+		/*-------------------footer------------------------*/
+		#footer{
+		width:821px;
+		height:50px;
+		clear:both;
+		color:#837d7b;
+		}
+		.left_footer{
+		float:left;
+		padding:20px 0 0 0;
+		}
+		#footer a{
+		color:#837d7b;
+		padding:0 8px 0 8px;
+		text-decoration:none;
+		}
+		.right_footer{
+		float:right;
+		padding:15px 5px 0 0 ;
+		}
+	</style>
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+</head>
+
+
+<body>
+	<div class="jumbotron">
+		<div id="container">
+		<!--header-->
+			<div id="head_box">
+				<div id="head_wrap">
+                    <span id="menu"> <img src="img/icon.png" alt=""/>
+					</span>
+				    <div id = "head_logo" class = "head_com">
+                          LOGO
+				    </div>
+					<div id="head_nav" class = "head_com1">
+						<ul class = "head_nav_list">
+	                        <li>
+		                        <a class="head_nav_a" href = "index.html">Home</a>
+		                        <a class="head_nav_a" href = "index.html">主页</a>
+	                        </li>
+							<li>
+								<a class="head_nav_a" href = "project.html">Cases show</a>
+								<a class="head_nav_a" href = "project.html">案例展示</a>
+							</li>
+							<li>
+								<a class="head_nav_a" href = "blog.html">Blog</a>
+								<a class="head_nav_a" href = "blog.html">业界博文</a>
+							</li>
+							<li>
+								<a class="head_nav_a" href = "eyereach.html">Eyereach</a>
+								<a class="head_nav_a" href = "eyereach.html">Web视界</a>
+							</li>
+							<li>
+								<a class="head_nav_a" href = "team.html">Core team</a>
+								<a class="head_nav_a" href = "team.html">核心团队</a>
+							</li>
+							<li>
+								<a class="head_nav_a" href = "per_center.html">Personal Center</a>
+								<a class="head_nav_a" href = "per_center.html">个人中心</a>
+							</li>
+						</ul>
+                    </div>
+                    <div id = "head_search" class = "head_com">
+	                    <div class = "head_search_box">
+	                    <a class="head_nav_a" id = "search" href = ""><img src = "img/search16.ico"></a>
+	                        <input></input>
+	                    </div>
+	                </div>
+	                <div id = "head_login" class = "head_com">
+		                <a href="login.html">登录</a>
+		                <a href="signup.html">注册</a>
+	                </div>
+				</div>
+			</div>
+<!--header-->
+        <div id =  "project_show_body">
+            <div id="main_container">
+				<div id="header">
+			    	<div class="logo"><img src="proimages/logo.gif" border="0" alt="" title="" /></div>
+			    </div>
+			        <div class="menu">
+			        	<ul>
+			        		<li class="selected"><a href="#">home</a></li>
+			                <li><a href="#">about</a></li>
+			                <li><a href="#">demo</a></li>
+			                <li><a href="#">license</a></li>
+			                <li><a href="#">modules</a></li>
+			                <li><a href="#">themes</a></li>
+			                <li><a href="#">contact</a></li>
+			        	</ul>
+			        </div>
+
+			    <div class="center_content">
+
+			     	<div class="center_left">
+			        	<div class="title_welcome"><span class="red">FREE</span> Hosting Control Panel</div>
+			            <div class="welcome_box">
+			            <p class="welcome">
+			<span class="orange">Lorem ipsum dolor sit amet, consectetur adipisicing elit </span><br />
+			Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+						</p>
+			            <a href="#" class="read_more">read more</a>
+			            </div>
+
+			         <div class="features">
+			            <div class="title">Main features</div>
+
+			                    <ul class="list">
+			                    <li><span>1</span><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</a></li>
+			                    <li><span>2</span><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</a></li>
+			                    <li><span>3</span><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</a></li>
+			                    <li><span>4</span><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</a></li>
+			                    </ul>
+			         </div>
+
+
+			         <div class="features">
+			            <div class="title">Latest News</div>
+			                <div class="news_box">
+			                    <div class="news_icon"></div>
+			                    <div class="news_content">
+			                    “Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			                    </div>
+			                </div>
+			                <div class="news_box">
+			                    <div class="news_icon"></div>
+			                    <div class="news_content">
+			                    “Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			                    </div>
+			                </div>
+
+			         </div>
+
+
+
+
+
+			        </div>
+
+
+			        <div class="center_right">
+
+			        <div class="software_box"><img src="proimages/3dbox.gif" alt="" title="" /></div>
+
+			                        <div class="text_box">
+			                        <div class="title">Clients login</div>
+			                            <div class="login_form_row">
+			                            <label class="login_label">Username:</label><input type="text" name="name" class="login_input" />
+			                            </div>
+
+			                            <div class="login_form_row">
+			                            <label class="login_label">Password:</label><input type="password" name="pass" class="login_input" />
+			                            </div>
+			                            <input type="image" src="proimages/login.gif" class="login" />
+
+			                        </div>
+
+			                        <div class="testimonials">
+			                        	<div class="title">Testimonials</div>
+			                            <div class="text_box">
+			                             <p class="testimonial">
+			                             “Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam”<br />
+			                             <strong>Edward Caloryd</strong>
+
+			                             </p>
+
+
+			                            </div>
+
+			                        </div>
+
+
+			        </div>
+
+			        <div class="clear"></div>
+
+			    </div>
+
+
+			    <div id="footer">
+			        <div class="left_footer"><a href="#">home</a> <a href="#">about</a> <a href="#">privacy policy</a><a href="#">contact</a></div>
+			        <div class="right_footer"><a href="http//csstemplatesmarket.com"  target="_blank"><img src="proimages/csstemplatesmarket.gif" border="0" alt="" title="" /></a>
+			        </div>
+
+			    </div>
+
+
+
+			</div>
+        </div>
+
+        <!-- 多说评论框 start -->
+		<div class="ds-thread" data-thread-key="project_show_body" data-title="第一个在线项目" data-url="http://dream-maker-qboooogle-1.c9users.io:8080/project_show.html"></div>
+		<!-- 多说评论框 end -->
+		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+		<script type="text/javascript">
+		var duoshuoQuery = {short_name:"dreammaker"};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0]
+				 || document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+			</script>
+		<!-- 多说公共JS代码 end -->
+
+        <div>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+        </div>
+		    <span id="busuanzi_container_page_pv">
+		  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+		    </span>
+
+	<script type="text/javascript" src='js/lib/jquery.js'></script>
+<!--footer-->
+	        <div id="foot_box">
+				<div id="foot_wrap">
+					<div class="foot_bottom bottom_left1">
+						<dl>
+							<dt>服务</dt>
+							<dd>--------</dd>
+							<dd>网站指南</dd>
+							<dd>支付方式</dd>
+							<dd>合作方式</dd>
+						</dl>
+                    </div>
+                    <div class="foot_bottom bottom_left">
+						<dl>
+							<dt>售后</dt>
+							<dd>--------</dd>
+							<dd>售后政策</dd>
+							<dd>自助服务</dd>
+							<dd>相关下载</dd>
+						</dl>
+                    </div>
+                    <div class="foot_bottom bottom_left">
+						<dl>
+							<dt>支持</dt>
+                            <dd>--------</dd>
+							<dd>APP之家</dd>
+							<dd>服务网点</dd>
+							<dd>预约服务</dd>
+						</dl>
+				    </div>
+                    <div class="foot_bottom bottom_left">
+						<dl>
+							<dt>关注</dt>
+                            <dd>--------</dd>
+							<dd>新浪微博</dd>
+							<dd>网页部落</dd>
+							<dd>官方微信</dd>
+						</dl>
+                    </div>
+                    <div class="foot_bottom bottom_main">
+						<dl>
+							<dt>联系我们</dt>
+                            <dd>24小时在线客服：400-100-0000</dd>
+							<dd>团队地址：广州市XXXXXXXXXXX</dd>
+							<dd>团队邮箱：1234567@gmail.com</dd>
+							<dd>团队名片：Dreammaker创业团队</dd>
+						</dl>
+					</div>
+					<div class="foot_bottom bottom_right">
+						<div  class = "code">
+                             <img src= "img/bottom_QRcode.png"/>
+						</div>
+						<div  class = "downloadapp">
+							<div class = "comh downloadIOS">
+							    <div class = "ios">
+                                    <img src= "img/cfh_bottom_IphoneICO.png"/>
+	                                 IOS
+							    </div>
+							    <div class = "iosicon">
+                                  <img src= "img/cfh_bottom_IphoneICO_2.png"/>
+							    </div>
+							</div>
+
+							<div class = "comh downloadAnd">
+	                            <div class = "and">
+                                    <img src= "img/cfh_bottom_AndroidICO.png"/>
+                                     安卓
+	                             </div>
+							    <div class = "andicon">
+                                  <img src= "img/cfh_bottom_AndroidICO_1.png"/>
+							    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="foot_note_box">
+					<div class="foot_note_wrap">
+						<div class="foot_note_con">
+							<span class="foot_note_txt">
+							<a>dreammaker</a><h>|</h><a>友情链接</a><h>|</h><a>商务合作</a><h>|</h><a>广告位招租</a><h>|</h>
+						    <a>©dreammaker.com [2016]0000-0000号</a>
+						    </span>
+						</div>
+						<a class="back_top" href="#top">回到顶部↑</a>
+					</div>
+				</div>
+			</div>
+<!--footer-->
+
+	<script type="text/javascript" src='/js/lib/jquery.js'></script>
+	<script type="text/javascript" src='/js/index.js'></script>
+	<script async src="/js/lib/busuanzi.pure.mini.js"></script>
+	<script>
+
+	</script>
+	</body>
+</html>

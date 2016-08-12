@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <div id="container">
+	    <!-- <input value = "Please Input The Title" id = "write_blog_title"> -->
+	    	<button id = "save_edit">发布</button>
+	    <!-- </input> -->
+
+        <div id="epiceditor">
+			  	<iframe id="epiceditor-instance-id">
+				    <html>
+				      <head>
+				        <link type="text/css" id="" rel="stylesheet" href="/stylesheets/themes/base/epiceditor.css" media="screen">
+				      </head>
+				      <body>
+				        <div id="epiceditor-wrapper">
+				          <iframe id="epiceditor-editor-frame">
+				            <html>
+				              <head>
+				                <link type="text/css" rel="stylesheet" href="/stylesheets/themes/editor/epic-dark.css" media="screen">
+				              </head>
+				              <body contenteditable="true">
+				                <!-- raw content -->
+				              </body>
+				            </html>
+				          </iframe>
+				          <iframe id="epiceditor-previewer-frame">
+				            <html>
+				              <head>
+				                <link type="text/css" rel="stylesheet" href="/stylesheets/themes/preview/github.css" media="screen">
+				              </head>
+				              <body>
+				                <div id="epiceditor-preview">
+				                  <!-- rendered html -->
+
+				                </div>
+				              </body>
+				            </html>
+				          </iframe>
+				          <div id="epiceditor-utilbar">
+				            <span title="Toggle Preview Mode" class="epiceditor-toggle-btn epiceditor-toggle-preview-btn"></span>
+				            <span title="Enter Fullscreen" class="epiceditor-fullscreen-btn"></span>
+
+				          </div>
+				        </div>
+				      </body>
+				    </html>
+				  </iframe>
+		    </div>
+        </div>
+
+    <script type="text/javascript" src="js/lib/epiceditor.min.js"></script>
+    <script type="text/javascript" src='js/lib/jquery.js'></script>
+    <script type="text/javascript" src="js/lib/filesaver.js"></script>
+    <script async src="js/lib/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        var opts = {
+			  container: 'epiceditor',
+			  //textarea: 'my-edit-area',
+			  basePath: './',
+			  clientSideStorage: true,
+			  localStorageName: 'epiceditor',
+			  useNativeFullscreen: true,
+			  parser: marked,
+			  file: {
+			    name: 'epiceditor',
+			    defaultContent: '',
+			    autoSave: 100
+			  },
+			  theme: {
+			    base: 'themes/base/epiceditor.css',
+			    preview: 'themes/preview/github.css',
+			    editor: 'themes/editor/epic-dark.css'
+			  },
+			  button: {
+			    preview: true,
+			    fullscreen: true,
+			    bar: "auto"
+			  },
+			  focusOnLoad: false,
+			  shortcut: {
+			    modifier: 18,
+			    fullscreen: 60,
+			    preview: 80
+			  },
+			  string: {
+			    togglePreview: 'Toggle Preview Mode',
+			    toggleEdit: 'Toggle Edit Mode',
+			    toggleFullscreen: 'Enter Fullscreen'
+			  },
+			  autogrow: {
+                 minHeight:40,
+                 scroll:true
+			  }
+			}
+			var editor = new EpicEditor(opts).load();
+
+            var str3 = '<div id="epiceditor-preview">';
+            var str4 = '</body></html>';
+            var str1 = '<!DOCTYPE html><html><title>Hello Strapdown</title><xmp '+ 'theme="united" style="display:none;">';
+            var str2 = '</xmp><script src="http:/'+'/strapdownjs.com/v/0.2/strapdown.js"></'+'script><'+'/html>';
+           // alert(str1);
+           // alert(str2);
+            $("#save_edit").click(function () {
+            	var name = str3;
+				           alert(editor.getElement('previewer').body.innerHTML);
+				name +=editor.getElement('previewer').body.innerHTML;
+               // name +=str4;
+			    // alert(editor.getElement('editor').body.innerHTML);
+                //alert(name);
+                //
+                //var title = $("#write_blog_title").val();
+                //alert("获取文章标题！")
+                //alert(title);
+                $.ajax({
+		    		type:"POST",
+		    		url:"/save_blog",
+		    		data:"d="+new Date() + "&name=" + name ,
+		    		success: function(data) {
+		    			if(data) {
+		    				window.location = "blog.html";
+		    			} else {
+		    				alert("发布失败！")
+		    				return false;
+		    			}
+		    		}
+		    	});
+				//var blob = new Blob([name],{type: "text/plain;charset=utf-8"});
+		       // saveAs(blob, "helloworld.html");
+			});
+    </script>
+    </body>
+</html>
+
