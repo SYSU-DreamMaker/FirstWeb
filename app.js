@@ -8,8 +8,9 @@ var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 var ejs = require('ejs');
 
-module.exports = function() {
+module.exports = function(db) {
   var routes = require('./routes/index');
+  var user = require('./routes/user')(db);
   var app = express();
 
   // view engine setup
@@ -32,9 +33,10 @@ module.exports = function() {
       secret: 'keyboard cat'
   }));
 
-
   app.get('/:name', routes.other);
   app.get('/', routes.index);
+
+  app.use(user);
 
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {
